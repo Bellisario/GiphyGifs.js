@@ -7,8 +7,9 @@
  * https://github.com/Bellisario/GiphyGifs.js/blob/main/LICENSE
  */
 (function () {
-    if (document.readyState !== 'complete')
+    if (document.readyState !== 'complete') {
         return alert('Page is not completely loaded: re-run this script after page load.');
+    };
     function getGif() {
         try {
             return document.querySelector('video+img').src;
@@ -25,13 +26,16 @@
         a.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
         a.click();
     };
-    if (!location.href.startsWith('https://giphy.com/gifs/'))
+    if (!location.href.startsWith('https://giphy.com/gifs/')) {
         return alert('Cannot get gif from this URL. It needs to be as this:\nhttps://giphy.com/gifs/...');
+    };
     var gifUrl = getGif();
-    if (!gifUrl)
+    if (!gifUrl) {
         return alert('Failed to get gif.');
+    };
     var name = prompt('Ready to download!\nWhat name you want to use (without extension)?\nIf input is blank will be used the default name.', 'giphyGif');
-    if (!name || name === ' ')
+    if (!name || name === ' ') {
         name = 'giphyGif';
+    };
     download(gifUrl, name);
 })();
